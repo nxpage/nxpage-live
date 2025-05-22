@@ -9,6 +9,8 @@ export default function Connect() {
         method="POST"
         className="space-y-4"
       >
+        <input type="hidden" name="_replyto" value="nxpage.contact@gmail.com" />
+        <input type="hidden" name="_subject" value="New Shadow Request on NXPAGE" />
         <input
           type="text"
           name="name"
