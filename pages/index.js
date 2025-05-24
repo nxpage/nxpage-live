@@ -14,18 +14,17 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-6">
-      <div className="flex flex-col items-center space-y-6 mb-8">
+    <div className="max-w-5xl mx-auto px-4 py-6">
+      <div className="flex items-center mb-4">
         <img
           src="/nxpage-logo-trimmed.png"
           alt="NXPAGE Logo"
-          className="h-12 w-auto"
+          className="h-8 w-auto"
+          style={{ maxHeight: "32px", maxWidth: "90px" }}
         />
       </div>
-
       <SearchBar />
       <FilterTabs active={active} setActive={setActive} />
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
         {operators
           .filter((op) => active === "All" || op.tags.includes(active))
