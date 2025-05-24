@@ -2,7 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Base font + background */
 body {
   font-family: 'Inter', sans-serif;
   background-color: #f9f9f9;
+  color: #1a1a1a;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding: 0;
+  margin: 0;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: #111827; /* Tailwind gray-900 */
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Links */
+a {
+  color: #4f46e5; /* Tailwind indigo-600 */
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+a:hover {
+  color: #4338ca; /* Tailwind indigo-700 */
+}
+
+/* Buttons */
+button {
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+/* Forms */
+input,
+textarea,
+select {
+  @apply border border-gray-300 rounded px-3 py-2 w-full;
+  font-size: 0.95rem;
+  background-color: white;
+  transition: border-color 0.2s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #6366f1; /* Tailwind indigo-500 */
+}
+
+/* Utility cleanup */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
