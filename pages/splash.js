@@ -1,13 +1,16 @@
-// pages/splash.js
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Splash() {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-[#fcfcfc] text-center px-4">
-      <img
+      <Image
         src="/nxpage-logo-trimmed-small.png"
         alt="NXPAGE Logo"
-        className="h-24 md:h-32 mb-6 drop-shadow-md"
+        width={160}
+        height={160}
+        className="mb-6 drop-shadow-md"
+        priority
       />
       <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
         Discover. Connect. Elevate.
