@@ -6,32 +6,44 @@ export default function SpotlightPage() {
   const { slug } = router.query;
 
   const operator = operators.find(
-    (op) => op.name.toLowerCase() === slug?.toLowerCase()
+    (op) => op.username?.toLowerCase() === slug?.toLowerCase()
   );
 
   if (!operator) return <div className="p-6 text-center">Operator not found.</div>;
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-2">{operator.name}</h1>
-      <p className="text-xl text-gray-700 mb-4">{operator.role}</p>
+    <div className="min-h-screen bg-black text-white flex items-center justify-center px-4 py-12">
+      <div className="text-center max-w-lg">
+        <h2 className="text-sm tracking-widest text-gray-400 mb-2">SPOTLIGHT</h2>
+        <h1 className="text-4xl font-bold mb-1">{operator.name}</h1>
+        <p className="text-lg text-gray-300 mb-6">{operator.role}</p>
 
-      <div className="mb-4 flex flex-wrap gap-2">
-        {operator.tags.map((tag, i) => (
-          <span key={i} className="bg-gray-200 px-2 py-1 rounded text-sm">
-            {tag}
-          </span>
-        ))}
-      </div>
+        {operator.image && (
+          <img
+            src={operator.image}
+            alt={`${operator.name}'s profile`}
+            className="w-40 h-40 rounded-full object-cover mx-auto mb-6 border-4 border-gray-700"
+          />
+        )}
 
-      <p className="text-gray-800 leading-relaxed">{operator.bio}</p>
+        <div className="flex flex-wrap justify-center gap-2 mb-6">
+          {operator.tags.map((tag, i) => (
+            <span
+              key={i}
+              className="px-3 py-1 rounded-full border border-gray-600 text-sm"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
 
-      <div className="mt-8">
+        <p className="text-gray-200 mb-10 leading-relaxed">{operator.bio}</p>
+
         <a
           href="/"
-          className="text-purple-600 hover:underline text-sm"
+          className="inline-block bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition"
         >
-          ← Back to Grid
+          View Grid →
         </a>
       </div>
     </div>
