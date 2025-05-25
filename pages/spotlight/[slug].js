@@ -6,44 +6,37 @@ export default function SpotlightPage() {
   const { slug } = router.query;
 
   const operator = operators.find(
-    (op) => op.username?.toLowerCase() === slug?.toLowerCase()
+    (op) => op.username.toLowerCase() === slug?.toLowerCase()
   );
 
   if (!operator) return <div className="p-6 text-center">Operator not found.</div>;
 
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center px-4 py-12">
-      <div className="text-center max-w-lg">
-        <h2 className="text-sm tracking-widest text-gray-400 mb-2">SPOTLIGHT</h2>
-        <h1 className="text-4xl font-bold mb-1">{operator.name}</h1>
-        <p className="text-lg text-gray-300 mb-6">{operator.role}</p>
+    <div className="max-w-2xl mx-auto p-6 text-center">
+      <h1 className="text-4xl font-bold mb-2">{operator.name}</h1>
+      <p className="text-xl text-gray-600 mb-4">{operator.role}</p>
 
-        {operator.image && (
-          <img
-            src={operator.image}
-            alt={`${operator.name}'s profile`}
-            className="w-40 h-40 rounded-full object-cover mx-auto mb-6 border-4 border-gray-700"
-          />
-        )}
+      {operator.image && (
+        <img
+          src={operator.image}
+          alt={`${operator.name} Spotlight`}
+          className="w-48 h-48 object-cover rounded-full mx-auto mb-6 shadow-lg"
+        />
+      )}
 
-        <div className="flex flex-wrap justify-center gap-2 mb-6">
-          {operator.tags.map((tag, i) => (
-            <span
-              key={i}
-              className="px-3 py-1 rounded-full border border-gray-600 text-sm"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+      <div className="mb-4 flex justify-center flex-wrap gap-2">
+        {operator.tags.map((tag, i) => (
+          <span key={i} className="bg-gray-200 px-3 py-1 rounded-full text-sm">
+            {tag}
+          </span>
+        ))}
+      </div>
 
-        <p className="text-gray-200 mb-10 leading-relaxed">{operator.bio}</p>
+      <p className="text-lg text-gray-800 leading-relaxed">{operator.bio}</p>
 
-        <a
-          href="/"
-          className="inline-block bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition"
-        >
-          View Grid →
+      <div className="mt-8">
+        <a href="/" className="text-purple-600 hover:underline text-sm">
+          ← Back to Grid
         </a>
       </div>
     </div>
