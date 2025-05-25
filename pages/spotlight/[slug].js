@@ -1,33 +1,45 @@
-// pages/spotlight/[slug].js
 import { useRouter } from "next/router";
 
-const spotlightMock = {
-  name: "Raye",
-  role: "Visual Strategist",
-  tags: ["#ClientEnergy", "#StreetAura"],
-  bio: "I design presence — moments you can feel. From pitch to billboard, I ghost the frame.",
-  spotlightText: "Every grid needs an anchor. I became the storm they hired to hold the screen."
+const operatorData = {
+  raye: {
+    name: "Raye",
+    role: "Visual Strategist",
+    tags: ["#ClientEnergy", "#StreetAura"],
+    intro: "Strategic visual ops who sees brand energy before it lands."
+  },
+  ellis: {
+    name: "Ellis",
+    role: "Creative Mentor",
+    tags: ["#SilentOps", "#DesignOps"],
+    intro: "Quiet executioner of elite UI flows and presence training."
+  },
+  emma: {
+    name: "Emma",
+    role: "Rhythm Coach",
+    tags: ["#FastHands", "#AuraTactician"],
+    intro: "Brings beat precision to creative chaos — tempo tuned."
+  }
 };
 
-export default function SpotlightProfile() {
+export default function Spotlight() {
   const router = useRouter();
   const { slug } = router.query;
+  const op = operatorData[slug];
+
+  if (!op) return <div className="p-6">404 — Operator Not Found</div>;
 
   return (
-    <div className="max-w-3xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-2">{spotlightMock.name}</h1>
-      <p className="text-purple-700 font-medium">{spotlightMock.role}</p>
-      <div className="flex gap-2 flex-wrap my-2">
-        {spotlightMock.tags.map((tag, i) => (
-          <span key={i} className="bg-gray-100 text-sm px-3 py-1 rounded-full">
+    <div className="max-w-2xl mx-auto p-6">
+      <h1 className="text-3xl font-bold mb-2">{op.name}</h1>
+      <p className="text-gray-500 mb-4">{op.role}</p>
+      <div className="flex flex-wrap gap-2 mb-4">
+        {op.tags.map((tag, i) => (
+          <span key={i} className="bg-gray-200 px-2 py-1 text-sm rounded">
             {tag}
           </span>
         ))}
       </div>
-      <p className="text-gray-700 mt-4">{spotlightMock.bio}</p>
-      <blockquote className="mt-6 italic border-l-4 border-purple-600 pl-4 text-purple-900">
-        “{spotlightMock.spotlightText}”
-      </blockquote>
+      <p className="text-lg text-gray-700">{op.intro}</p>
     </div>
   );
 }
