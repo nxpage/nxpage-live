@@ -1,32 +1,71 @@
+// pages/admin.js
+import { useState } from "react";
+import Head from "next/head";
+
 const mockSubmissions = [
-  { name: "Lani", role: "Aura Mapper", tags: ["#Presence"], bio: "I help creators feel seen in 30 mins or less." },
-  { name: "Zee", role: "Client Whisperer", tags: ["#ClientEnergy", "#BrandFlex"], bio: "People trust me with the unseen." }
+  {
+    name: "Kairo",
+    role: "Impact Designer",
+    tags: ["#QuietStorm", "#GridMover"],
+    bio: "I create brand visuals that carry memory and momentum.",
+    email: "kairo@example.com"
+  },
+  {
+    name: "Nyah",
+    role: "Voice Presence Coach",
+    tags: ["#FastHands", "#SilentOps"],
+    bio: "Teaching creators how to own a room without speaking too loud.",
+    email: "nyah@example.com"
+  }
 ];
 
 export default function Admin() {
+  const [submissions, setSubmissions] = useState(mockSubmissions);
+
+  const handleApprove = (index) => {
+    const approved = submissions[index];
+    console.log("Approved:", approved);
+    setSubmissions(submissions.filter((_, i) => i !== index));
+  };
+
+  const handleReject = (index) => {
+    setSubmissions(submissions.filter((_, i) => i !== index));
+  };
+
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6">Admin Review Panel</h1>
-      {mockSubmissions.map((op, i) => (
-        <form
-          key={i}
-          action="https://formspree.io/f/xrbqvgda"
-          method="POST"
-          className="border p-4 rounded mb-4 shadow-sm space-y-2"
-        >
-          <input type="hidden" name="name" value={op.name} />
-          <input type="hidden" name="role" value={op.role} />
-          <input type="hidden" name="tags" value={op.tags.join(", ")} />
-          <input type="hidden" name="bio" value={op.bio} />
-          <h2 className="font-semibold">{op.name} — {op.role}</h2>
-          <p className="text-sm text-gray-600">{op.tags.join(" ")}</p>
-          <p className="text-gray-800">{op.bio}</p>
-          <div className="space-x-2 pt-2">
-            <button type="submit" className="px-3 py-1 bg-green-600 text-white rounded">Approve</button>
-            <button type="button" className="px-3 py-1 bg-red-600 text-white rounded">Reject</button>
-          </div>
-        </form>
-      ))}
-    </div>
+    <>
+      <Head>
+        <title>Admin Panel | NXPAGE</title>
+      </Head>
+      <div className="max-w-4xl mx-auto p-6">
+        <h1 className="text-3xl font-bold mb-6">Operator Submission Review</h1>
+        {submissions.length === 0 ? (
+          <p className="text-gray-500">No submissions pending.</p>
+        ) : (
+          submissions.map((op, i) => (
+            <div key={i} className="border p-4 rounded mb-4 shadow-sm bg-white">
+              <h2 className="font-semibold text-xl">{op.name}</h2>
+              <p className="text-sm text-gray-600">{op.role}</p>
+              <p className="text-gray-800 mt-2 mb-2">{op.bio}</p>
+              <p className="text-sm text-gray-500 mb-2">{op.tags.join(" ")}</p>
+              <div className="space-x-2">
+                <button
+                  onClick={() => handleApprove(i)}
+                  className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"
+                >
+                  Approve
+                </button>
+                <button
+                  onClick={() => handleReject(i)}
+                  className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                >
+                  Reject
+                </button>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+    </>
   );
 }
