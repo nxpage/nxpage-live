@@ -1,30 +1,45 @@
-import operators from "../data/operators.json";
+// pages/grid.js
+import { useEffect, useState } from "react";
+import OperatorCard from "../components/OperatorCard";
 import Link from "next/link";
 
-export default function PublicGrid() {
+export default function GridPage() {
+  const [operators, setOperators] = useState([]);
+
+  useEffect(() => {
+    fetch("/data/operators.json")
+      .then((res) => res.json())
+      .then((data) => setOperators(data));
+  }, []);
+
   return (
-    <div className="max-w-5xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6 text-center">Operator Grid</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {operators.map((op, i) => (
-          <Link key={i} href={`/spotlight/${op.username}`}>
-            <a className="block border rounded-lg p-4 hover:shadow-lg transition text-center">
-              {op.image && (
-                <img
-                  src={op.image}
-                  alt={`${op.name} profile`}
-                  className="w-24 h-24 mx-auto object-cover rounded-full mb-3"
-                />
-              )}
-              <h2 className="font-semibold text-lg">{op.name}</h2>
-              <p className="text-sm text-gray-600">{op.role}</p>
-              <div className="mt-2 flex flex-wrap justify-center gap-1">
-                {op.tags.map((tag, i) => (
-                  <span key={i} className="bg-gray-200 px-2 py-1 text-xs rounded">
-                    {tag}
-                  </span>
-                ))}
-              </div>
+    <div className="max-w-6xl mx-auto p-6">
+      <div className="flex justify-between items-center mb-6">
+        <img
+          src="/nxpage-logo-trimmed-small.png"
+          alt="NXPAGE Logo"
+          className="h-8 w-auto object-contain"
+        />
+        <Link href="/">
+          <a className="text-indigo-600 text-sm font-medium hover:underline">
+            ← Back to Main
+          </a>
+        </Link>
+      </div>
+
+      <h1 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800 font-clash">
+        Operator Grid
+      </h1>
+
+      <p className="text-gray-600 mb-4">
+        Browse public profiles of active operators on NXPAGE.
+      </p>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+        {operators.map((op, index) => (
+          <Link key={index} href={`/spotlight/${op.username}`}>
+            <a>
+              <OperatorCard {...op} />
             </a>
           </Link>
         ))}
