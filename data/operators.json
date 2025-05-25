@@ -1,11 +1,12 @@
 [
   {
-    "name": "Raye",
-    "username": "raye",
-    "role": "Visual Strategist",
-    "tags": ["#ClientEnergy", "#StreetAura"],
-    "bio": "I design digital rhythm for creators who want to be seen and paid."
-  },
+  "name": "Raye",
+  "username": "raye",
+  "role": "Visual Strategist",
+  "tags": ["#ClientEnergy", "#StreetAura"],
+  "bio": "I design digital rhythm for creators who want to be seen and paid.",
+  "image": "/raye-spotlight.png"
+},
   {
     "name": "Ellis",
     "username": "ellis",
