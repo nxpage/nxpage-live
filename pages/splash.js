@@ -6,7 +6,7 @@ export default function Splash() {
     <div className="flex flex-col justify-center items-center min-h-screen bg-[#fcfcfc] text-center px-4">
       <div className="relative h-24 w-24 md:h-32 md:w-32 mb-6 drop-shadow-md">
         <Image
-          src="/nxpage-logo-trimmed-small.png"
+          src="/nxpage-logo-trimmed-main.png"
           alt="NXPAGE Logo"
           layout="fill"
           objectFit="contain"
