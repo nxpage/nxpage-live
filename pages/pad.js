@@ -1,38 +1,30 @@
-import { useRouter } from "next/router"; import operators from "../../data/operators.json";
+// pages/pad.js
+import Link from "next/link";
 
-export default function Spotlight() { const router = useRouter(); const { slug } = router.query;
+export default function Pad() {
+  return (
+    <div className="max-w-3xl mx-auto p-6">
+      <h1 className="text-3xl font-bold mb-6">NXPAGE Command Pad</h1>
 
-const operator = operators.find( (op) => op.name.toLowerCase().replace(/\s+/g, "-") === slug );
+      <div className="space-x-4 mb-4 text-indigo-600 font-medium text-sm">
+        <Link href="/"><a>Home</a></Link>
+        <Link href="/connect"><a>Connect</a></Link>
+        <Link href="/submit"><a>Submit</a></Link>
+        <Link href="/admin"><a>Admin</a></Link>
+        <Link href="/spotlight/raye"><a>Spotlight Access</a></Link>
+      </div>
 
-if (!operator) return <div className="p-6">Loading...</div>;
-
-return ( <div className="max-w-2xl mx-auto p-6"> <button onClick={() => router.back()} className="text-sm text-blue-500 hover:underline mb-4" > ← Back </button>
-
-<h1 className="text-3xl font-bold mb-2">{operator.name}</h1>
-  <p className="text-lg text-gray-600 mb-4">{operator.role}</p>
-
-  <div className="flex gap-2 flex-wrap mb-4">
-    {operator.tags.map((tag, i) => (
-      <span
-        key={i}
-        className="bg-gray-200 text-sm px-2 py-1 rounded"
-      >
-        {tag}
-      </span>
-    ))}
-  </div>
-
-  {operator.bio && <p className="text-gray-800 mb-4">{operator.bio}</p>}
-
-  {operator.email && (
-    <a
-      href={`mailto:${operator.email}`}
-      className="inline-block mt-2 bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
-    >
-      Contact
-    </a>
-  )}
-</div>
-
-); }
-
+      <div className="text-gray-700 text-sm">
+        <p className="mb-2">
+          Use the links above to navigate between major system control points.
+        </p>
+        <ul className="list-disc list-inside space-y-1">
+          <li>Submit or edit operator profiles</li>
+          <li>Access shadow session requests</li>
+          <li>Review and approve new operator entries</li>
+          <li>Jump into spotlight or discovery grid directly</li>
+        </ul>
+      </div>
+    </div>
+  );
+}
