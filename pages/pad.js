@@ -1,27 +1,38 @@
-import Link from "next/link";
+import { useRouter } from "next/router"; import operators from "../../data/operators.json";
 
-export default function Pad() {
-  return (
-    <div className="max-w-4xl mx-auto px-6 py-10 space-y-10">
-      <h1 className="text-3xl font-extrabold tracking-tight text-gray-800">NXPAGE Command Pad</h1>
+export default function Spotlight() { const router = useRouter(); const { slug } = router.query;
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <Section title="Operator Grid" href="/" />
-        <Section title="Submit Profile" href="/submit" />
-        <Section title="Connect Requests" href="/connect" />
-        <Section title="Admin Review" href="/admin" />
-        <Section title="Spotlight Access" href="/spotlight/raye" />
-      </div>
-    </div>
-  );
-}
+const operator = operators.find( (op) => op.name.toLowerCase().replace(/\s+/g, "-") === slug );
 
-function Section({ title, href }) {
-  return (
-    <Link href={href}>
-      <a className="block bg-white shadow-sm rounded-lg border px-5 py-4 text-gray-700 hover:bg-gray-100 transition">
-        {title}
-      </a>
-    </Link>
-  );
-}
+if (!operator) return <div className="p-6">Loading...</div>;
+
+return ( <div className="max-w-2xl mx-auto p-6"> <button onClick={() => router.back()} className="text-sm text-blue-500 hover:underline mb-4" > ← Back </button>
+
+<h1 className="text-3xl font-bold mb-2">{operator.name}</h1>
+  <p className="text-lg text-gray-600 mb-4">{operator.role}</p>
+
+  <div className="flex gap-2 flex-wrap mb-4">
+    {operator.tags.map((tag, i) => (
+      <span
+        key={i}
+        className="bg-gray-200 text-sm px-2 py-1 rounded"
+      >
+        {tag}
+      </span>
+    ))}
+  </div>
+
+  {operator.bio && <p className="text-gray-800 mb-4">{operator.bio}</p>}
+
+  {operator.email && (
+    <a
+      href={`mailto:${operator.email}`}
+      className="inline-block mt-2 bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
+    >
+      Contact
+    </a>
+  )}
+</div>
+
+); }
+
