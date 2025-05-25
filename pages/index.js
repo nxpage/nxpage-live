@@ -1,11 +1,12 @@
+// pages/index.js
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 
-export default function Home() {
+export default function HomeRedirect() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push("/splash");
+    router.replace("/splash");
   }, [router]);
 
   return null;
