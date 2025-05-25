@@ -11,6 +11,7 @@ export default function Connect() {
       >
         <input type="hidden" name="_replyto" value="nxpage.contact@gmail.com" />
         <input type="hidden" name="_subject" value="New Shadow Request on NXPAGE" />
+        <input type="hidden" name="_redirect" value="https://nxpage-live.vercel.app/thank-you" />
         <input
           type="text"
           name="name"
