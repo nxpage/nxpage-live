@@ -1,18 +1,21 @@
 [
   {
     "name": "Raye",
+    "slug": "raye",
     "role": "Visual Strategist",
     "tags": ["#ClientEnergy", "#StreetAura"],
     "bio": "I design digital rhythm for creators who want to be seen and paid."
   },
   {
     "name": "Ellis",
+    "slug": "ellis",
     "role": "Creative Mentor",
     "tags": ["#SilentOps", "#DesignOps"],
     "bio": "Quiet mind, loud output. I teach creators to move with style and power."
   },
   {
     "name": "Emma",
+    "slug": "emma",
     "role": "Rhythm Coach",
     "tags": ["#FastHands", "#AuraTactician"],
     "bio": "Training presence, flow, and delivery. If you fumble, I recalibrate you fast."
