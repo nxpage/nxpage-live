@@ -1,35 +1,22 @@
-// pages/admin.js
-import { useState } from "react";
+import fs from "fs";
+import path from "path";
 import Head from "next/head";
+import { useState } from "react";
 
-const mockSubmissions = [
-  {
-    name: "Kairo",
-    role: "Impact Designer",
-    tags: ["#QuietStorm", "#GridMover"],
-    bio: "I create brand visuals that carry memory and momentum.",
-    email: "kairo@example.com"
-  },
-  {
-    name: "Nyah",
-    role: "Voice Presence Coach",
-    tags: ["#FastHands", "#SilentOps"],
-    bio: "Teaching creators how to own a room without speaking too loud.",
-    email: "nyah@example.com"
-  }
-];
+export async function getServerSideProps() {
+  const filePath = path.join(process.cwd(), "data", "submissions.json");
+  const data = fs.readFileSync(filePath, "utf8");
+  const submissions = JSON.parse(data);
 
-export default function Admin() {
-  const [submissions, setSubmissions] = useState(mockSubmissions);
+  return { props: { submissions } };
+}
 
-  const handleApprove = (index) => {
-    const approved = submissions[index];
-    console.log("Approved:", approved);
-    setSubmissions(submissions.filter((_, i) => i !== index));
-  };
+export default function Admin({ submissions }) {
+  const [reviewed, setReviewed] = useState([]);
 
-  const handleReject = (index) => {
-    setSubmissions(submissions.filter((_, i) => i !== index));
+  const handleAction = (index, action) => {
+    const reviewedName = submissions[index].name;
+    setReviewed([...reviewed, { index, action, name: reviewedName }]);
   };
 
   return (
@@ -40,30 +27,48 @@ export default function Admin() {
       <div className="max-w-4xl mx-auto p-6">
         <h1 className="text-3xl font-bold mb-6">Operator Submission Review</h1>
         {submissions.length === 0 ? (
-          <p className="text-gray-500">No submissions pending.</p>
+          <p className="text-gray-500">No submissions available.</p>
         ) : (
-          submissions.map((op, i) => (
-            <div key={i} className="border p-4 rounded mb-4 shadow-sm bg-white">
-              <h2 className="font-semibold text-xl">{op.name}</h2>
-              <p className="text-sm text-gray-600">{op.role}</p>
-              <p className="text-gray-800 mt-2 mb-2">{op.bio}</p>
-              <p className="text-sm text-gray-500 mb-2">{op.tags.join(" ")}</p>
-              <div className="space-x-2">
-                <button
-                  onClick={() => handleApprove(i)}
-                  className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"
-                >
-                  Approve
-                </button>
-                <button
-                  onClick={() => handleReject(i)}
-                  className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                >
-                  Reject
-                </button>
+          submissions.map((op, i) => {
+            const review = reviewed.find((r) => r.index === i);
+            return (
+              <div
+                key={i}
+                className={`border p-4 rounded mb-4 shadow-sm bg-white ${
+                  review?.action === "approved"
+                    ? "border-green-500"
+                    : review?.action === "rejected"
+                    ? "border-red-500"
+                    : ""
+                }`}
+              >
+                <h2 className="font-semibold text-xl">{op.name}</h2>
+                <p className="text-sm text-gray-600">{op.role}</p>
+                <p className="text-gray-800 mt-2 mb-2">{op.bio}</p>
+                <p className="text-sm text-gray-500 mb-2">{op.tags}</p>
+                {!review ? (
+                  <div className="space-x-2">
+                    <button
+                      onClick={() => handleAction(i, "approved")}
+                      className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"
+                    >
+                      Approve
+                    </button>
+                    <button
+                      onClick={() => handleAction(i, "rejected")}
+                      className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                    >
+                      Reject
+                    </button>
+                  </div>
+                ) : (
+                  <p className="text-sm mt-2 text-gray-500 italic">
+                    {review.name} has been {review.action}.
+                  </p>
+                )}
               </div>
-            </div>
-          ))
+            );
+          })
         )}
       </div>
     </>

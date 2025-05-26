@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Kairo",
+    "role": "Impact Designer",
+    "tags": "#QuietStorm, #GridMover",
+    "bio": "I create brand visuals that carry memory and momentum.",
+    "email": "kairo@example.com"
+  },
+  {
+    "name": "Nyah",
+    "role": "Voice Presence Coach",
+    "tags": "#FastHands, #SilentOps",
+    "bio": "Teaching creators how to own a room without speaking too loud.",
+    "email": "nyah@example.com"
+  }
+]
