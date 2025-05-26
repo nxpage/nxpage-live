@@ -1,24 +1,32 @@
 [
   {
-  "name": "Raye",
-  "username": "raye",
-  "role": "Visual Strategist",
-  "tags": ["#ClientEnergy", "#StreetAura"],
-  "bio": "I design digital rhythm for creators who want to be seen and paid.",
-  "image": "/raye-spotlight.png"
-},
-  {
-    "name": "Ellis",
-    "username": "ellis",
-    "role": "Creative Mentor",
-    "tags": ["#SilentOps", "#DesignOps"],
-    "bio": "Quiet mind, loud output. I teach creators to move with style and power."
+    "name": "Raye",
+    "username": "raye",
+    "role": "Visual Strategist",
+    "tags": ["#ClientEnergy", "#StreetAura"],
+    "synergy_tags": ["#DesignOps", "#SilentOps"],
+    "tier": "££",
+    "bio": "I design digital rhythm for creators who want to be seen and paid.",
+    "image": "/raye-spotlight.png"
   },
   {
     "name": "Emma",
     "username": "emma",
     "role": "Rhythm Coach",
     "tags": ["#FastHands", "#AuraTactician"],
-    "bio": "Training presence, flow, and delivery. If you fumble, I recalibrate you fast."
+    "synergy_tags": ["#GridMover", "#QuietStorm"],
+    "tier": "elite",
+    "bio": "Training presence, flow, and delivery. If you fumble, I recalibrate you fast.",
+    "image": "/emma-spotlight.png"
+  },
+  {
+    "name": "Ellis",
+    "username": "ellis",
+    "role": "Creative Mentor",
+    "tags": ["#SilentOps", "#DesignOps"],
+    "synergy_tags": ["#ClientEnergy"],
+    "tier": "£££",
+    "bio": "Quiet mind, loud output. I teach creators to move with style and power.",
+    "image": "/ellis-spotlight.png"
   }
 ]
