@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NXPAGE Home - Dark</title>
+  <style>
+    body {
+      font-family: Inter, sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .nav-links a {
+      margin-left: 16px;
+      color: #a78bfa;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .operator-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .operator-card {
+      border: 1px solid #334155;
+      padding: 16px;
+      border-radius: 8px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="nav">
+      <img src="/nxpage-logo-trimmed-small.png" alt="NXPAGE Logo" height="32" />
+      <div class="nav-links">
+        <a href="/connect">Connect</a>
+        <a href="/submit">Submit</a>
+        <a href="/admin">Admin</a>
+      </div>
+    </div>
+    <div class="operator-grid">
+      <div class="operator-card">Operator A</div>
+      <div class="operator-card">Operator B</div>
+      <div class="operator-card">Operator C</div>
+    </div>
+  </div>
+</body>
+</html>
